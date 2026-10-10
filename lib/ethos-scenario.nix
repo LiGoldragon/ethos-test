@@ -11,6 +11,10 @@
 # the scenario is promoted to "pass" when the behaviour lands.
 # A failure of the rig (the frame, the shell, the harness build itself)
 # fails the check either way.
+#
+# The same drive runs a second time against the held set's candidate tree,
+# as the derivation's `candidate` attribute, under candidateTarget: a ruled
+# target the set satisfies is "pass" there. checks/candidate.nix gathers them.
 {
   pkgs,
   flake,
@@ -20,32 +24,51 @@
   name,
   statement,
   target,
+  candidateTarget ? target,
   script,
 }:
-assert builtins.elem target [
-  "pass"
-  "ruled"
-];
 let
+  fixtures = ../fixtures + "/${name}";
+  run =
+    {
+      pname,
+      target,
+      ethosZero,
+      cargo,
+      passthru ? { },
+    }:
+    assert builtins.elem target [
+      "pass"
+      "ruled"
+    ];
+    cargo.derivation {
+      inherit pname passthru;
+      nativeBuildInputs = [ ethosZero.package ];
+      buildPhaseCargoCommand = ''
+        NAME=${pkgs.lib.escapeShellArg name}
+        STATEMENT=${pkgs.lib.escapeShellArg statement}
+        TARGET=${target}
+        FIXTURES=${if builtins.pathExists fixtures then fixtures else "/nonexistent"}
+        ${builtins.readFile ./ethos-scenario.sh}
+
+        drive() {
+        ${script}
+        }
+
+        scenario
+      '';
+      installPhaseCommand = "";
+    };
+in
+run {
+  pname = name;
+  inherit target;
   ethosZero = flake.lib.components.ethos-zero { inherit system; };
   cargo = flake.lib.components.cargo { inherit pkgs system; };
-  fixtures = ../fixtures + "/${name}";
-in
-cargo.derivation {
-  pname = name;
-  nativeBuildInputs = [ ethosZero.package ];
-  buildPhaseCargoCommand = ''
-    NAME=${pkgs.lib.escapeShellArg name}
-    STATEMENT=${pkgs.lib.escapeShellArg statement}
-    TARGET=${target}
-    FIXTURES=${if builtins.pathExists fixtures then fixtures else "/nonexistent"}
-    ${builtins.readFile ./ethos-scenario.sh}
-
-    drive() {
-    ${script}
-    }
-
-    scenario
-  '';
-  installPhaseCommand = "";
+  passthru.candidate = run {
+    pname = "${name}-candidate";
+    target = candidateTarget;
+    ethosZero = flake.lib.components.ethos-zero-candidate { inherit system; };
+    cargo = flake.lib.components.cargo-candidate { inherit pkgs system; };
+  };
 }

@@ -8,7 +8,11 @@ d5df1d's ethos solution. STATEMENTS.md maps every statement to its check, or
 says why it has none.
 
 ethos-zero is a flake input whose `nixpkgs` and `rust-build` follow this
-flake's; `flake.lock` pins it at 07714b0. Test unpushed ethos-zero code with
+flake's; `flake.lock` pins it at 07714b0. A second input,
+`ethos-zero-candidate`, pins the held set's candidate tree (branch
+`candidate/held-set-bare` of the ethos-zero repository); `checks.candidate`
+runs every scenario against it, under each scenario's `candidateTarget`
+(see STATEMENTS.md, "Two pinned checks"). Test unpushed ethos-zero code with
 `--override-input ethos-zero path:<checkout>`; once it lands,
 `nix flake update ethos-zero` and commit the lock.
 
@@ -35,6 +39,8 @@ output. `checks.<system>.report` gathers them:
     lib/ethos-scenario.nix        the frame: one derivation per scenario, the target
     lib/ethos-scenario.sh         the frame's helpers: generate, expect, compiles
     harness/                      Cargo.toml and lock: rkyv; datom-codec, protos under `datom`
+    harness-candidate/            the same, on the held set's datom-codec
+    checks/candidate.nix          every scenario against the candidate tree
     checks/ethos-zero-*.nix       one scenario per file
     checks/report.nix             every scenario's outcome
     fixtures/<scenario>/          the ethos files one scenario reads

@@ -1,6 +1,6 @@
 # FlowId.String and Age.Integer each generate a new type, a struct bearing
 # the derive every struct bears, never an alias; rustc accepts it.
-# Target: ruled.
+# Target: ruled; against the held set's candidate tree, pass.
 {
   pkgs,
   flake,
@@ -11,6 +11,7 @@ flake.lib.ethosScenario { inherit pkgs flake system; } {
   name = "ethos-zero-cargo-newtype";
   statement = "Newtypes, not type aliases (d4ae97 vision/ethos.md, 2026-10-06; ethos-solution item 1)";
   target = "ruled";
+  candidateTarget = "pass";
   script = ''
     generate newtype
     expect "newtype" "$reply" "Generated.[ @work/gen/newtype/newtype.rs ]"

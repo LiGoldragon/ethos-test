@@ -3,8 +3,26 @@
 Every statement of psyche-skills `vision/ethos.md` at 850fd27, and every
 ruled item of d5df1d's ethos solution (`flows/d5df1d/reports/ethos-solution.md`
 in Primary), mapped to the check that tests it, or to the reason it has none.
-Line numbers are those of `vision/ethos.md` at 850fd27. The checks run
-ethos-zero as `flake.lock` pins it (07714b0).
+Line numbers are those of `vision/ethos.md` at 850fd27.
+
+## Two pinned checks
+
+- **Main**: every `ethos-zero-*` check and `report`, against ethos-zero as
+  `flake.lock` pins it (07714b0). The categories below are its targets.
+- **Candidate**: `checks/candidate.nix`, every scenario's drive against the
+  held set's candidate tree, flake input `ethos-zero-candidate` (branch
+  `candidate/held-set-bare` of the ethos-zero repository: 07714b0 plus
+  item12-on-item5-ethos-zero.patch and item6-on-set-ethos-zero.patch, its
+  datom-codec and protos pins moved to the set's patched commits on
+  `candidate/held-set-datom-codec` and `candidate/held-set-protos`), with
+  `harness-candidate/` on the set's datom-codec. Each scenario runs there
+  under its `candidateTarget`: the ruled targets the set satisfies (items 1,
+  2 and 6) are `pass`; every other target is as in the main check.
+
+When the set lands on ethos-zero main, the two checks become one: the lock
+moves to the landed revision, the satisfied targets are promoted to `pass`,
+and `ethos-zero-candidate`, `harness-candidate/`, `candidateTarget` and
+`checks/candidate.nix` are removed.
 
 The categories:
 
@@ -88,14 +106,14 @@ The categories:
 
 ## Ruled items of the ethos solution
 
-| item | ruling | category | check |
-|---|---|---|---|
-| 1. A declaration `Name.Type` is a new type | d4ae97 vision/ethos.md, "Newtypes, not type aliases", 2026-10-06 | ruled | ethos-zero-cargo-newtype, ethos-zero-cargo-newtype-distinct |
-| 2. A struct of one position is refused | d4ae97 vision/ethos.md, "A one-position type is called a new type", 2026-10-06 | ruled | ethos-zero-single-position, ethos-zero-single-position-inline |
-| 3. The inline import `Topic.custom:Name` | d5df1d vision/ethos.md, choice 3, 2026-10-09 | pass | ethos-zero-inline-import |
-| 5. `kind` to `trait` | d5df1d vision/ethos.md, "Trait: rename every place", 2026-10-09 | pass | the `TraitWanted` reply in ethos-zero-trait-concrete-input |
-| 6. Flow's `FlowId.String`, with its comment | as item 1 | ruled | ethos-zero-cargo-flow-id |
-| 8. Implementers report what is hard to express | ebbe30 vision/ethos.md, 2026-10-09 | no observable | a rule of conduct for implementers |
+| item | ruling | category (main) | candidate | check |
+|---|---|---|---|---|
+| 1. A declaration `Name.Type` is a new type | d4ae97 vision/ethos.md, "Newtypes, not type aliases", 2026-10-06 | ruled | pass | ethos-zero-cargo-newtype, ethos-zero-cargo-newtype-distinct |
+| 2. A struct of one position is refused | d4ae97 vision/ethos.md, "A one-position type is called a new type", 2026-10-06 | ruled | pass | ethos-zero-single-position, ethos-zero-single-position-inline |
+| 3. The inline import `Topic.custom:Name` | d5df1d vision/ethos.md, choice 3, 2026-10-09 | pass | pass | ethos-zero-inline-import |
+| 5. `kind` to `trait` | d5df1d vision/ethos.md, "Trait: rename every place", 2026-10-09 | pass | pass | the `TraitWanted` reply in ethos-zero-trait-concrete-input |
+| 6. Flow's `FlowId.String`, with its comment | as item 1 | ruled | pass | ethos-zero-cargo-flow-id |
+| 8. Implementers report what is hard to express | ebbe30 vision/ethos.md, 2026-10-09 | no observable | no observable | a rule of conduct for implementers |
 
 The new-type targets assert a struct and not an alias, and the distinctness
 rustc gives it; the inner position's form is types Fork 4, not asserted. The
@@ -118,6 +136,9 @@ refusal name `SinglePosition` is the design's own (ethos-solution item 2).
 - Invariants Fork 2: who holds layout and comments.
 - Invariants Fork 3: a Mutex field.
 - The special representation.
+- The Represented ethos form, `Ticket.[ Represented.{ Representation.Vector<Digit> } ]`:
+  unruled, no target. Its tests live in the candidate ethos-zero tree that
+  carries it, not here.
 - The inline-import research questions, `core:Name` among them (item 7).
 - A lowercase variant name refused (item 4d).
 - Any Sources-list behaviour.

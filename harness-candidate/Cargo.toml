@@ -1,0 +1,17 @@
+# The held set's datom-codec (4dff16b plus item12-on-item5-datom-codec.patch),
+# committed on candidate/held-set-datom-codec of the ethos-zero repository.
+[package]
+name = "ethos-test-harness"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[workspace]
+
+[features]
+datom = ["dep:datom-codec", "dep:protos"]
+
+[dependencies]
+rkyv = { version = "0.8", default-features = false, features = ["std", "bytecheck", "little_endian", "pointer_width_32", "unaligned"] }
+datom-codec = { git = "https://github.com/LiGoldragon/ethos-zero", rev = "3e86f813b2e67e0b56956fbdcb68c1da12e91e88", optional = true }
+protos = { git = "https://github.com/LiGoldragon/protos", rev = "15b41da8f2579e73ead59bc0c2b97529b8ac32d3", optional = true }

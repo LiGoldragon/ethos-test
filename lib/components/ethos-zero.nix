@@ -1,8 +1,8 @@
 # The tested generator: ethos-zero as its own flake builds it, at the
-# revision flake.lock pins.
-{ inputs }:
+# revision flake.lock pins for the given input.
+{ source }:
 { system }:
 {
-  package = inputs.ethos-zero.packages.${system}.default;
-  inherit (inputs.ethos-zero) rev;
+  package = source.packages.${system}.default;
+  inherit (source) rev;
 }
