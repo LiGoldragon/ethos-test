@@ -1,6 +1,7 @@
 # Every generated struct and enum, an inline payload's included, carries the
 # derive; an alias carries none and bears the traits through the type it
 # names. rustc confirms each type bears Datomizable and Composing.
+# It asserts the code's derive name, Composing, not the vision's Compositional.
 # Target: pass.
 {
   pkgs,

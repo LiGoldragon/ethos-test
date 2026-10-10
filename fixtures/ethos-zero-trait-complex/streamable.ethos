@@ -1,9 +1,0 @@
-Library
-[ std:Serializable ]
-[]
-[ Fillable.[ create:[ Self ] ]
-  Streamable.{ [ Fillable ]
-               [ Item<Serializable> ]
-               [ CAPACITY.Integer ]
-               [ next![ Option<Item> ] ] } ]
-[]

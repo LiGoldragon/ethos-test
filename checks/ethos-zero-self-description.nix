@@ -1,6 +1,7 @@
 # With no argument, the CLI prints the ethos that describes its own anatomy:
-# the output is itself ethos that ethos-zero accepts, and it declares the
-# two requests the CLI takes.
+# the print is ethos that ethos-zero accepts; it is the literal anatomy
+# below, and it describes the CLI as it behaves: the requests Generate and
+# Check, answered Generated and Checked, are the ones the print declares.
 # Target: pass.
 {
   pkgs,
@@ -14,10 +15,34 @@ flake.lib.ethosScenario { inherit pkgs flake system; } {
   target = "pass";
   script = ''
     ethos-zero >"$work/self.ethos"
-    step "no argument" "$(head -c 200 "$work/self.ethos" | tr '\n' ' ')"
+    step "no argument" "$(wc -l <"$work/self.ethos") lines"
     reply=$(answered "$(ethos-zero "Check.$work/self.ethos" 2>&1 || true)")
     expect "its own print, checked" "$reply" "Checked.@work/self.ethos"
-    expect_contains "the requests" "$(cat "$work/self.ethos")" "[ Query.[ Generate.Generation
-              Check.String ]"
+    cat >"$work/anatomy" <<'ETHOS'
+    Library
+    [ datom_codec:[ Error ]
+      ethos_zero:[ Problem Location ] ]
+    [ Query.[ Generate.Generation
+              Check.String ]
+      Response.[ Generated.Vector<String>
+                 Checked.String
+                 Arguments.Integer
+                 Malformed.Error
+                 Unreadable.{ String String }
+                 Rejected.{ String Location Generation_Error }
+                 Unwritable.{ String String } ]
+      Generation.{ String String }
+      Generation_Error.[ Structural.protos:Error
+                         Conceptual.{ Vector<Integer>
+                                      ethos_zero:Problem } ] ]
+    []
+    []
+    ETHOS
+    diff "$work/anatomy" "$work/self.ethos" >"$work/diff" || miss "the print differs from the anatomy: $(head -c 400 "$work/diff" | tr '\n' ' ')"
+    step "the anatomy" "as written"
+    check record
+    expect "Check, answered Checked" "$reply" "Checked.@/record.ethos"
+    generate record
+    expect "Generate, answered Generated" "$reply" "Generated.[ @work/gen/record/record.rs ]"
   '';
 }

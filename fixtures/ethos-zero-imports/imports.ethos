@@ -1,5 +1,5 @@
 Library
 [ protos:[ String Textualizable ]  datom:Datom ]
 [ Holder.{ Datom Integer } ]
-[]
+[ Resolvable.[ resolve.{ [ Textualizable ] [ Self ] } ] ]
 []

@@ -1,3 +1,4 @@
+# The refusal name SinglePosition is the design's own (ethos-solution item 2).
 # A struct holds two or more positions: Age.{ Integer } is refused as
 # SinglePosition, and Age.Integer is accepted.
 # Target: ruled.
@@ -9,7 +10,7 @@
 }:
 flake.lib.ethosScenario { inherit pkgs flake system; } {
   name = "ethos-zero-single-position";
-  statement = "Ethos-solution item 2: Single-field structs and double wrapping are refused";
+  statement = "A one-position type is called a new type (d4ae97 vision/ethos.md, 2026-10-06; ethos-solution item 2)";
   target = "ruled";
   script = ''
     generate new-type

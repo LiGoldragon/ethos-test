@@ -9,7 +9,7 @@
 }:
 flake.lib.ethosScenario { inherit pkgs flake system; } {
   name = "ethos-zero-cargo-newtype-distinct";
-  statement = "Ethos-solution item 1: A declaration Name.Type is a new type, not an alias";
+  statement = "Newtypes, not type aliases (d4ae97 vision/ethos.md, 2026-10-06; ethos-solution item 1)";
   target = "ruled";
   script = ''
     generate distinct

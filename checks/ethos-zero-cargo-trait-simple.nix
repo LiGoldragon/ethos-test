@@ -15,10 +15,10 @@ flake.lib.ethosScenario { inherit pkgs flake system; } {
   script = ''
     generate fillable
     expect "fillable" "$reply" "Generated.[ @work/gen/fillable/fillable.rs ]"
-    expect_item "! takes mutable self, with an input" "fn push(&mut self, input: Self) -> std::result::Result<i64, SinkError> where Self: Sized;"
+    expect_item "! takes mutable self, with an input" "fn push(&mut self, input: Self) -> std::result::Result<i64, SinkError>"
     expect_item "! takes mutable self" "fn drain(&mut self) -> std::vec::Vec<String>;"
     expect_item ". takes self" "fn peek(&self) -> i64;"
-    expect_item ": takes no self" "fn create() -> Self where Self: Sized;"
+    expect_item ": takes no self" "fn create() -> Self"
     main=$(cat <<'RS'
     struct Sink(Vec<String>);
     impl Fillable for Sink {

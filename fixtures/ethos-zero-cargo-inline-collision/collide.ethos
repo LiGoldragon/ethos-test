@@ -1,0 +1,8 @@
+Library
+[]
+[ P.[ X.{ String Integer }
+      Y ]
+  Q.[ X.{ Integer String }
+      Z ] ]
+[]
+[]

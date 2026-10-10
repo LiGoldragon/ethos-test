@@ -1,0 +1,8 @@
+Library
+[]
+[ Lock.{ String Integer }
+  PathOverlap_Data.{ Lock Integer }
+  LockRejection.[ PathOverlap.{ Lock Lock }
+                  Other ] ]
+[]
+[]

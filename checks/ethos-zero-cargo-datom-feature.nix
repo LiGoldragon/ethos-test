@@ -1,6 +1,7 @@
 # A signal library bears Datomizable and Composing under the datom feature.
 # Without the feature the harness has no datom-codec at all, and rustc
 # accepts the same generated Rust; with it, the types bear both traits.
+# It asserts the code's derive name, Composing, not the vision's Compositional.
 # Target: pass.
 {
   pkgs,

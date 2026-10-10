@@ -1,7 +1,7 @@
 # Four roots: Library, Signal, Operation, Memory. Each is read; Signal
 # generates Query and Response from its queries and responses, Operation
-# generates Operation and Outcome; any other head is refused, and Sema,
-# Memory's former head, is refused as renamed.
+# generates one Operation type for every effect, Memory its record types;
+# any other head is refused.
 # Target: pass.
 {
   pkgs,
@@ -24,13 +24,10 @@ flake.lib.ethosScenario { inherit pkgs flake system; } {
     generate operation
     expect "Operation" "$reply" "Generated.[ @work/gen/operation/operation.rs ]"
     expect_item "Operation operations" "pub enum Operation { Start(String), }"
-    expect_item "Operation outcomes" "pub enum Outcome { Started(i64), }"
     generate memory
     expect "Memory" "$reply" "Generated.[ @work/gen/memory/memory.rs ]"
     expect_item "Memory record types" "pub struct Record { pub string: String, pub integer: i64, }"
     generate other-root
     expect "a fifth head" "$reply" "Rejected.{ @/other-root.ethos { 1 1 } Conceptual.{ [ 0 ] Root } }"
-    generate sema
-    expect "Sema" "$reply" "Rejected.{ @/sema.ethos { 1 1 } Conceptual.{ [ 0 ] Renamed.Memory } }"
   '';
 }

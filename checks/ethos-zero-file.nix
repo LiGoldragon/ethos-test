@@ -1,7 +1,7 @@
 # The sweet form (the head, then the sections as siblings) and the braced
-# canonical form read the same: both generate the same Rust. A Library's
-# sections are imports, types, traits and associations. A file carries no
-# version: a version written before the sections is refused.
+# canonical form read the same: both generate the same Rust. A file carries
+# no version: a version written before the sections is refused, the root
+# counting one element more than its sections.
 # Target: pass.
 {
   pkgs,
@@ -23,6 +23,6 @@ flake.lib.ethosScenario { inherit pkgs flake system; } {
     cmp -s "$sweet" "$rust" || miss "the sweet and braced forms generate different Rust"
     step "sweet and braced" "the same Rust"
     generate version
-    expect_prefix "a version in the file" "$reply" "Rejected.{ @/version.ethos "
+    expect "a version in the file" "$reply" "Rejected.{ @/version.ethos { 1 8 } Conceptual.{ [ 1 ] Arity.{ 4 5 } } }"
   '';
 }

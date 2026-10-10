@@ -1,5 +1,0 @@
-Library
-[ std:[ Clonable Sendable Serializable ] ]
-[]
-[ Processable<[Clonable Sendable] Serializable>.[ create:[ Self ] ] ]
-[]
