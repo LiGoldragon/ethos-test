@@ -1,0 +1,13 @@
+Library
+[]                       ; imports: none
+[ FlowId.String          ; a string for now, unideal:
+                         ;   the flow id is to be a hash
+  Voice.[ Psyche.Rank
+          Mind.Rank
+          Field.Rank ]
+  Rank.[ Primary Secondary Tertiary ]
+  Event.[ Started
+          ToolUsed.String
+          Stopped ] ]
+[]                       ; traits
+[]                       ; associations

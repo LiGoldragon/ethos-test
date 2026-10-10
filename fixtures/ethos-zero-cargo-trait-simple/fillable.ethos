@@ -1,0 +1,8 @@
+Library
+[]
+[ SinkError.[ Closed Full ] ]
+[ Fillable.[ push!{ [ Self ] [ Result<Integer SinkError> ] }
+             drain![ Vector<String> ]
+             peek.[ Integer ]
+             create:[ Self ] ] ]
+[]

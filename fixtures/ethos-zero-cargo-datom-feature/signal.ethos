@@ -1,0 +1,8 @@
+Signal
+[]
+[ Lock.LockRequest
+  Release.Integer ]
+[ Locked.Lock
+  Released.Lock ]
+[ LockRequest.{ String Integer }
+  Lock.{ Integer String } ]

@@ -1,0 +1,9 @@
+Library
+[]
+[ LockId.Integer
+  LockName.String
+  Lock.{ LockId LockName }
+  LockRejection.[ DuplicateName.Lock
+                  PathOverlap.{ Lock Lock } ] ]
+[]
+[]

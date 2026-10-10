@@ -1,0 +1,9 @@
+Library
+[ bounds:Clonable ]
+[]
+[ Fillable.[ create:[ Self ] ]
+  Streamable.{ [ Fillable ]
+               [ Item<Clonable> ]
+               [ CAPACITY.Integer ]
+               [ next![ Option<Item> ] ] } ]
+[]

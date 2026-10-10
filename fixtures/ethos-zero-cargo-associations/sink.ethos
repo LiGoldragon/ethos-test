@@ -1,0 +1,6 @@
+Library
+[]
+[ Sink.{ String Integer } ]
+[ Summarizable.[ summarize.[ String ] ]
+  Fillable.[ create:[ Self ] ] ]
+[ Sink.[ Summarizable Fillable ] ]

@@ -1,0 +1,5 @@
+Library
+[ protos:Textualizable ]
+[]
+[ Resolvable.[ resolve.{ [ Textualizable ] [ Self ] } ] ]
+[]

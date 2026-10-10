@@ -1,0 +1,9 @@
+Library
+[]
+[ Names.Vector<String>
+  Rank.[ Primary Secondary ]
+  Record.{ Names Rank }
+  Event.[ Started.{ String Integer }
+          Stopped ] ]
+[]
+[]

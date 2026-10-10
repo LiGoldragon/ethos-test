@@ -1,0 +1,7 @@
+Library
+[]
+[ FilePath.String
+  GenerationFailure.[ SyntaxError.Vector<FilePath>
+                      Unwritable.{ FilePath String } ] ]
+[]
+[]
