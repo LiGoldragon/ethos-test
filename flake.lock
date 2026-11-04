@@ -810,7 +810,6 @@
       },
       "original": {
         "owner": "LiGoldragon",
-        "ref": "candidate/held-set-bare",
         "repo": "ethos-zero",
         "type": "github"
       }

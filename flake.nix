@@ -27,7 +27,7 @@
     # same repository. Read only by checks/candidate.nix. When the set lands
     # on main, this input and that check fold into ethos-zero and the report.
     ethos-zero-candidate = {
-      url = "github:LiGoldragon/ethos-zero/candidate/held-set-bare";
+      url = "github:LiGoldragon/ethos-zero";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-build.follows = "rust-build";
     };
