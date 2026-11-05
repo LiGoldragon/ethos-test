@@ -10,27 +10,11 @@
   system,
   ...
 }:
-let
-  scenarios = pkgs.lib.filterAttrs (
-    name: _: pkgs.lib.hasPrefix "ethos-zero-" name
-  ) flake.checks.${system};
-  outcomes = pkgs.lib.concatMapStringsSep " " (check: "${check}/outcome") (
-    builtins.attrValues scenarios
-  );
-in
-pkgs.runCommand "report" { } ''
-  {
-    echo "Written to psyche-skills vision/ethos.md at ${flake.lib.vision}, and the ruled items of flows/d5df1d/reports/ethos-solution.md."
-    echo "ethos-zero pinned at ${inputs.ethos-zero.rev}."
-    echo
-    echo "passing:"
-    grep -h ': passing$' ${outcomes} | sed 's/^/  /' || true
-    echo
-    echo "expected-failing (ruled targets):"
-    grep -h ': expected-failing (ruled target): ' ${outcomes} | sed 's/^/  /' || true
-    echo
-    echo "steps:"
-    cat ${outcomes}
-  } > $out
-  cat $out
-''
+(import ../lib/scenario-report.nix) {
+  inherit pkgs;
+  checks = flake.checks.${system};
+  name = "report";
+  vision = flake.lib.vision;
+  subject = "ethos-zero pinned at ${inputs.ethos-zero.rev}.";
+  scenarioOutcome = check: check;
+}

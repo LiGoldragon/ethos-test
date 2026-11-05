@@ -9,13 +9,14 @@ let
   rust = inputs.rust-build.lib.${system}.fromPkgs pkgs;
   inherit (rust) craneLib;
   src = harness;
-  cargoVendorDir = craneLib.vendorCargoDeps { cargoLock = harness + "/Cargo.lock"; };
+  cargoVendorDir = craneLib.vendorCargoDeps { cargoLock = src + "/Cargo.lock"; };
   common = {
     inherit src cargoVendorDir;
     pname = "ethos-test-harness";
     version = "0.1.0";
     strictDeps = true;
   };
+  cargoArtifacts = craneLib.buildDepsOnly (common // { cargoExtraArgs = "--features datom"; });
 in
 {
   inherit craneLib src;
@@ -24,7 +25,7 @@ in
     craneLib.mkCargoDerivation (
       common
       // {
-        cargoArtifacts = craneLib.buildDepsOnly (common // { cargoExtraArgs = "--features datom"; });
+        inherit cargoArtifacts;
         doInstallCargoArtifacts = false;
         doCheck = false;
       }

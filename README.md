@@ -38,6 +38,7 @@ output. `checks.<system>.report` gathers them:
     lib/components/cargo.nix      the harness crate, its dependencies built once
     lib/ethos-scenario.nix        the frame: one derivation per scenario, the target
     lib/ethos-scenario.sh         the frame's helpers: generate, expect, compiles
+    lib/scenario-report.nix       the shared stable and candidate report renderer
     harness/                      Cargo.toml and lock: rkyv; datom-codec, protos under `datom`
     harness-candidate/            the same, on the held set's datom-codec
     checks/candidate.nix          every scenario against the candidate tree
