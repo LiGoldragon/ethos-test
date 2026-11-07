@@ -16,6 +16,18 @@ runs every scenario against it, under each scenario's `candidateTarget`
 `--override-input ethos-zero path:<checkout>`; once it lands,
 `nix flake update ethos-zero` and commit the lock.
 
+## Current harness 0.2.0
+
+The current `harness/` adopts protos 0.33 (`3c7ade3`) and datom-codec
+0.33.1 (`5cd6219`). Its per-crate reader-budget fixture uses the checked
+constructor. This is the current harness's first 0.33 adoption; the crate
+remains `publish = false`.
+
+`harness-candidate/` remains the held-set comparison: its version and
+pins are retained. Its fixture uses that cohort's original public-field
+reader budget. Neither generator input is changed by this harness upgrade.
+The ruled scenarios retain their declared expected-failure semantics.
+
 ## Targets
 
 Each scenario declares a target. `pass`: it must meet every expectation.

@@ -4,5 +4,5 @@
 // pinned protos builds it.
 
 pub fn reader_budget(remaining: usize) -> protos::ReaderBudget {
-    protos::ReaderBudget { remaining }
+    protos::ReaderBudget::try_from(remaining).expect("bounded reader budget")
 }
