@@ -95,7 +95,7 @@ crate() {
   local generated=$1 main=$2
   cp "$generated" src/generated.rs
   {
-    printf '#[path = "generated.rs"]\nmod generated;\n#[allow(unused_imports)]\nuse generated::*;\n'
+    printf '#[path = "generated.rs"]\nmod generated;\n#[path = "fixture.rs"]\nmod fixture;\n#[allow(unused_imports)]\nuse generated::*;\n'
     printf '%s\n' "$main"
   } >src/main.rs
 }

@@ -19,12 +19,12 @@ flake.lib.ethosScenario { inherit pkgs flake system; } {
     expect_item "the enum" "pub enum GenerationFailure { SyntaxError(SyntaxError), Unwritable, }"
     main=$(cat <<'RS'
     use datom_codec::{Actualizing, Budget, Datomizable, Path, Potential};
-    use protos::{Protosizable, ReaderBudget, Textualizable};
+    use protos::{Protosizable, Textualizable};
     fn main() {
         let text = "SyntaxError.[ /abs/orchestrate.ethos ]";
         let mut budget = Budget {
             remaining: 4_096,
-            reader: ReaderBudget { remaining: 4_096 },
+            reader: fixture::reader_budget(4_096),
             depth: 0,
             maximum_depth: 4_096,
         };
