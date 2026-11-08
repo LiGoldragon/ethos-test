@@ -56,13 +56,13 @@ The categories:
 | 73-75 | Self-description: the CLI help emits the ethos of the object's anatomy | pass | ethos-zero-self-description | the no-argument print equals the literal anatomy, `Check` accepts it, and the requests and replies it declares are the ones the CLI takes and gives |
 | 75-78 | Self-description: Mentci later; two audiences | no observable | | horizon and purpose |
 | 82-85 | Horizon | no observable | | the future of the language |
-| 89-90 | Trait: the word, and the bearer of capabilities | no observable | | vocabulary; the landed `trait` word is in every `TraitWanted` reply |
+| 89-90 | Trait: the word, and the bearer of capabilities | no observable | | vocabulary |
 | 90-92 | Trait: no generics, only traits; a declared trait is a Rust trait | pass | ethos-zero-cargo-trait | a trait in an input becomes a bounded method parameter; rustc accepts the trait and an interaction |
 | 92 | Trait: "might imply more in the ethos world" | no observable | | open-ended |
-| 94 | Trait: a concrete type in an input is a trait not yet named | pass, the generator's reading | ethos-zero-trait-concrete-input | String in an input refused `TraitWanted.String` |
+| 94 | Trait: a concrete type in an input is a trait not yet named | ruled: the living's «we can allow types and traits signatures for now» | ethos-zero-trait-concrete-input | ethos-zero 20.0.0 writes String in an input as `input: String` and drops `TraitWanted`; ruled until this suite repins at 20.0.0, the pinned 07714b refusing `TraitWanted.String`. The vision line awaits Fable's proposal |
 | 98-104 | Naming | no observable | | qualifier versus verb is a judgement of English |
 | 106-110 | Identity: the head is the name and its constraints; a constraint is a trait or a bracket of traits | pass | ethos-zero-cargo-identity | one generic parameter per constraint, a bracket as `+` bounds; rustc accepts the trait and an interaction, the constraints imported from the harness crate |
-| 111 | Identity: a constraint in a trait declaration is a trait, never a type | pass, the generator's reading | ethos-zero-trait-concrete-input | the concrete-type refusal is the one observable of it |
+| 111 | Identity: a constraint in a trait declaration is a trait, never a type | no observable | | from ethos-zero 20.0.0 a capability input may be a type, so the concrete-type refusal no longer observes it |
 | 111-112 | Identity: two heads that differ in a constraint are two traits | differs: tension within the vision | | measured: `Rejected.{ @/two-heads.ethos { 5 3 } Conceptual.{ [ 1 2 1 0 ] Duplicate.Processable } }`; Rust holds one trait per name, so the line meets the vision's own "the ethos compiles to Rust". A fork for the living's next ethos book: distinct generated names, or amend the line |
 | 112-116 | Identity: which constraints belong is not a decision; the rest is the definition | no observable | | a statement of method |
 | 116-118 | Identity: angle brackets hold the constraints, a protos delimiter recycled from Rust | pass | ethos-zero-cargo-identity | the head is written with angle brackets and read |
@@ -88,7 +88,7 @@ The categories:
 | 338-339 | Shapes and placement: default implementations for Query and Response | no observable | | "may generate" |
 | 361-364 | Traits are explicit; bodies are hand-written | pass | ethos-zero-cargo-trait-explicit | the assertion is emitted; rustc accepts with the hand-written body and refuses E0277 without |
 | 385-389 | Trait syntax: a simple trait, receivers, inputs and yield; a yield bracket holds one type | pass | ethos-zero-cargo-trait-simple | `.` `!` `:` receivers and a headed brace of inputs and yield, each yield one type; rustc accepts an interaction |
-| 394 | Trait syntax: the example `push!{ [ String ] … }` | differs: a stale example | | measured: `Rejected.{ @/fillable.ethos { 4 23 } Conceptual.{ [ 1 2 0 1 0 1 0 0 ] TraitWanted.String } }`. Proposed one-line fix: `String` replaced by `Self` |
+| 394 | Trait syntax: the example `push!{ [ String ] … }` | no observable | | accepted from ethos-zero 20.0.0, `String` written as that type; the vision's example now takes `Serializable` |
 | 410-413 | Trait syntax: a complex trait | pass | ethos-zero-cargo-trait-complex | supertraits, an associated type with its constraint, an upper-case constant, a capability; rustc accepts an interaction |
 | 410-428 | Trait syntax: the complex example's `std:Serializable` | differs | | emits `std::Serializable`, which rustc does not resolve |
 | 440-444 | Associations: a type's name, a dot, its traits; the fourth section of a Library | pass | ethos-zero-cargo-associations | both assertions; rustc refuses E0277 when one trait is missing |
@@ -111,7 +111,7 @@ The categories:
 | 1. A declaration `Name.Type` is a new type | d4ae97 vision/ethos.md, "Newtypes, not type aliases", 2026-10-06 | ruled | pass | ethos-zero-cargo-newtype, ethos-zero-cargo-newtype-distinct |
 | 2. A struct of one position is refused | d4ae97 vision/ethos.md, "A one-position type is called a new type", 2026-10-06 | ruled | pass | ethos-zero-single-position, ethos-zero-single-position-inline |
 | 3. The inline import `Topic.custom:Name` | d5df1d vision/ethos.md, choice 3, 2026-10-09 | pass | pass | ethos-zero-inline-import |
-| 5. `kind` to `trait` | d5df1d vision/ethos.md, "Trait: rename every place", 2026-10-09 | pass | pass | the `TraitWanted` reply in ethos-zero-trait-concrete-input |
+| 5. `kind` to `trait` | d5df1d vision/ethos.md, "Trait: rename every place", 2026-10-09 | pass | pass | the `trait` word in ethos-zero's generated Rust, ethos-zero-cargo-trait |
 | 6. Flow's `FlowId.String`, with its comment | as item 1 | ruled | pass | ethos-zero-cargo-flow-id |
 | 8. Implementers report what is hard to express | ebbe30 vision/ethos.md, 2026-10-09 | no observable | no observable | a rule of conduct for implementers |
 
